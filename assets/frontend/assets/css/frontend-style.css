@@ -1,0 +1,94 @@
+/* css halaman login anggota */
+body.bg-gradient-default {
+	/* background-image: url('../img/logo/bg-auth.jpg'); */
+	background-color: #195878;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 100%;
+}
+
+.pass {
+	float: right;
+	margin-left: -25px;
+	margin-top: -30px;
+	margin-right: 10px;
+	position: relative;
+	z-index: 2;
+}
+
+#header .logo p {
+	font-family: 'Noto Sans', sans-serif;
+	font-size: 60%;
+}
+
+#header .logo h1 {
+	font-family: 'Noto Sans', sans-serif;
+}
+
+#hero .hero-container h1 {
+	font-family: 'Noto Sans', sans-serif;
+}
+
+.icon-cont .form-control.form-control-user {
+	padding-left: 35px;
+}
+
+.icon-container .form-control.form-control-user {
+	padding-left: 35px;
+}
+
+.icon-cont {
+	position: relative;
+}
+
+.icon-container {
+	position: relative;
+}
+
+.icon-pass {
+	float: left;
+	top: 34%;
+	left: 10px;
+	position: absolute;
+	z-index: 2;
+}
+
+.icon-email {
+	float: left;
+	top: 34%;
+	left: 10px;
+	position: absolute;
+	z-index: 2;
+}
+
+.card .card-body.bg-card {
+	background: #ffff;
+}
+
+.pass1 {
+	float: right;
+	margin-left: -25px;
+	margin-right: 10px;
+	margin-top: -25px;
+	position: relative;
+	z-index: 2;
+}
+
+.pass {
+	float: right;
+	margin-left: -25px;
+	margin-right: 10px;
+	margin-top: -25px;
+	position: relative;
+	z-index: 2;
+}
+
+.pass2 {
+	float: right;
+	margin-left: -25px;
+	margin-right: 10px;
+	margin-top: -25px;
+	position: relative;
+	z-index: 2;
+}
