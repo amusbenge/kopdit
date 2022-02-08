@@ -37,7 +37,7 @@ class Kredit extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    
+
 
     public function selesai()
     {
@@ -69,62 +69,59 @@ class Kredit extends CI_Controller
 
     public function hapusKreditDiterima($id_kredit)
     {
-        $status = $this->db->get_where('kredit', ['id_kredit' => $id_kredit ])->row_array()['status'];
+        $status = $this->db->get_where('kredit', ['id_kredit' => $id_kredit])->row_array()['status'];
         $this->db->where('id_kredit', $id_kredit);
         $this->db->delete('kredit');
         $this->db->where('id_kredit', $id_kredit);
         $this->db->delete('angsuran');
-        
+
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin/kredit/');
-        
     }
 
-    
+
 
     public function hapusKreditDitolak($id_kredit)
     {
-        $status = $this->db->get_where('kredit', ['id_kredit' => $id_kredit ])->row_array()['status'];
+        $status = $this->db->get_where('kredit', ['id_kredit' => $id_kredit])->row_array()['status'];
         $this->db->where('id_kredit', $id_kredit);
         $this->db->delete('kredit');
         $this->db->where('id_kredit', $id_kredit);
         $this->db->delete('angsuran');
-        
+
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin/kredit/ditolak');
-        
     }
 
     public function hapusKreditPengajuan($id_kredit)
     {
-        $status = $this->db->get_where('kredit', ['id_kredit' => $id_kredit ])->row_array()['status'];
+        $status = $this->db->get_where('kredit', ['id_kredit' => $id_kredit])->row_array()['status'];
         $this->db->where('id_kredit', $id_kredit);
         $this->db->delete('kredit');
         $this->db->where('id_kredit', $id_kredit);
         $this->db->delete('angsuran');
-        
+
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin/kredit/pengajuan');
     }
 
     public function hapusKreditSelesai($id_kredit)
     {
-        $status = $this->db->get_where('kredit', ['id_kredit' => $id_kredit ])->row_array()['status'];
+        $status = $this->db->get_where('kredit', ['id_kredit' => $id_kredit])->row_array()['status'];
         $this->db->where('id_kredit', $id_kredit);
         $this->db->delete('kredit');
         $this->db->where('id_kredit', $id_kredit);
         $this->db->delete('angsuran');
-        
+
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin/kredit/selesai');
-        
     }
 
     public function detail($id_kredit)
     {
         $data['title'] = 'Detail Kredit';
         $data['user'] = $this->db->get_where('admin', ['email' => $this->session->userdata('email')])->row_array();
-        $data['kredit'] = $this->db->get_where('v_kredit_anggota', ['id_kredit' => $id_kredit ])->row_array();
+        $data['kredit'] = $this->db->get_where('v_kredit_anggota', ['id_kredit' => $id_kredit])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -135,8 +132,8 @@ class Kredit extends CI_Controller
 
     public function kredit()
     {
-        $data['title'] ='Kredit';
-        $data['user'] = $this->db->get_where('admin', ['email' => $this->session->userdata('email')] )->row_array();
+        $data['title'] = 'Kredit';
+        $data['user'] = $this->db->get_where('admin', ['email' => $this->session->userdata('email')])->row_array();
         $data['kredit'] = $this->db->get('v_kredit_anggota')->result_array();
 
         $this->load->view('templates/header', $data);
@@ -148,9 +145,9 @@ class Kredit extends CI_Controller
 
     public function angsuran($id_kredit)
     {
-        $data['angsuran']   = $this->db->get_where('angsuran', ['id_kredit' => $id_kredit ])->result_array();
+        $data['angsuran']   = $this->db->get_where('angsuran', ['id_kredit' => $id_kredit])->result_array();
         $data['user'] = $this->db->get_where('admin', ['email' => $this->session->userdata('email')])->row_array();
-        $data['kredit']     = $this->db->get_where('kredit', ['id_kredit' => $id_kredit ])->row_array();
+        $data['kredit']     = $this->db->get_where('kredit', ['id_kredit' => $id_kredit])->row_array();
         $data['title'] = 'Angsuran';
         $data['total_angsur'] = $this->Kredit_model->cekSisaPinjamanAnggota($id_kredit);
         $data['id_kredit'] = $id_kredit;
@@ -163,9 +160,9 @@ class Kredit extends CI_Controller
     }
 
     public function konfirKredit($id_kredit)
-    {   
+    {
         $status = $this->input->post('status');
-        if($status == 'Pengajuan'){
+        if ($status == 'Pengajuan') {
             $this->session->set_flashdata('gagal', 'Mohon! untuk mengkongkonfirmasi data kredit');
             redirect('admin/kredit/pengajuan');
         } else {
@@ -176,28 +173,29 @@ class Kredit extends CI_Controller
 
             $this->db->where('id_kredit', $id_kredit);
             $this->db->update('kredit', $data);
-    
-            $this->sendEmail($id_kredit, $status);
-    
-            $this->session->set_flashdata('flash', 'Terkonfirmasi');
-            $tanggal = date(Y-m-d);
 
-            if($status == 'Diterima'){
+            $this->sendEmail($id_kredit, $status);
+
+            $this->session->set_flashdata('flash', 'Terkonfirmasi');
+            $tanggal = date('Y-m-d');
+
+            if ($status == 'Diterima') {
                 $data = [
-                'tgl_terima' => date('Y-m-d')
+                    'tgl_terima' => date('Y-m-d')
                 ];
 
                 $this->db->where('id_kredit', $id_kredit);
                 $this->db->update('kredit', $data);
 
                 redirect('admin/kredit');
-            } elseif($status == 'Ditolak'){
+            } elseif ($status == 'Ditolak') {
                 redirect('admin/kredit/ditolak');
             }
         }
     }
 
-    private function sendEmail($id_kredit, $status){
+    private function sendEmail($id_kredit, $status)
+    {
         $id_anggota = $this->Kredit_model->getIDAnggotaByIDKredit($id_kredit);
         $email = $this->Kredit_model->getEmailByID($id_anggota);
         // $kredit = $this->Kredit_model->getKredit($id_kredit);
@@ -218,22 +216,22 @@ class Kredit extends CI_Controller
         $this->email->from('kspswastisari@gmail.com', 'KSP Swastisari');
         $this->email->to($email);
 
-        if($status == 'Diterima'){
+        if ($status == 'Diterima') {
             $message = $this->load->view('templates/email/email_diterima', '', true);
             $this->email->subject('Kredit');
             $this->email->message($message);
-        }else if($status == 'Ditolak'){
+        } else if ($status == 'Ditolak') {
             $message = $this->load->view('templates/email/email_ditolak', '', true);
             $this->email->subject('Kredit');
             $this->email->message($message);
         }
 
-        if ($this->email->send()) { 
-			return true;
-		} else {
-			echo $this->email->print_debugger();
-			die;
-		}
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
     }
 
     public function cetak_kredit()

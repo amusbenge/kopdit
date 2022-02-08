@@ -31,6 +31,17 @@
 					</div>
 				</div>
 			</div>
+		<?php elseif ($this->session->flashdata('error')) : ?>
+			<div class="row mt-3 ml-2">
+				<div class="col-md-6">
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">Data Anggota
+						<strong>Gagal</strong> <?= $this->session->flashdata('error'); ?>.
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+			</div>
 		<?php endif; ?>
 
 		<div class="card-body">
