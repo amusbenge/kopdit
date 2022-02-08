@@ -71,7 +71,7 @@ class Admin extends CI_Controller
 
             $this->SuperModel->updateWhere($data_updt, $id, 'admin');
 
-            $this->session->set_flashdata('pesan', 'diupdate'); //tampilkan password salah pesan danger
+            $this->session->set_flashdata('pesan', 'diupdate'); 
             redirect('admin/admin');
         }
     }

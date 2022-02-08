@@ -21,14 +21,14 @@
     		<nav class="nav-menu d-none d-lg-block">
     			<ul>
     				<li class="active"><a href="<?= base_url('anggota/beranda') ?>">Beranda</a></li>
-    				<li class="drop-down"><a href="<?= base_url('tentang') ?>">Tentang</a>
+    				<li class="drop-down"><a href="<?= base_url('anggota/tentang') ?>">Tentang</a>
     					<ul>
-    						<li><a href="<?= base_url('tentang/') ?>#sejarah">Sejarah</a></li>
-    						<li><a href="<?= base_url('tentang/') ?>#sejarah">Visi dan Misi</a></li>
-    						<li><a href="<?= base_url('tentang/') ?>#sejarah">Profil</a></li>
-    						<li><a href="<?= base_url('tentang/') ?>#nilai">Nilai-nilai Inti</a></li>
-    						<li><a href="<?= base_url('tentang/') ?>#struktur">Struktur organisasi</a></li>
-    						<li><a href="<?= base_url('tentang/detailManajemen') ?>">Pengelola</a></li>
+    						<li><a href="<?= base_url('anggota/tentang/') ?>#sejarah">Sejarah</a></li>
+    						<li><a href="<?= base_url('anggota/tentang/') ?>#sejarah">Visi dan Misi</a></li>
+    						<li><a href="<?= base_url('anggota/tentang/') ?>#sejarah">Profil</a></li>
+    						<li><a href="<?= base_url('anggota/tentang/') ?>#nilai">Nilai-nilai Inti</a></li>
+    						<li><a href="<?= base_url('anggota/tentang/') ?>#struktur">Struktur organisasi</a></li>
+    						<li><a href="<?= base_url('anggota/detailManajemen') ?>">Pengelola</a></li>
     					</ul>
     				</li>
     				<?php if (isset($anggota['anggota'])) : ?>

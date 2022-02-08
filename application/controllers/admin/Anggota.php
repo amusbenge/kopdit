@@ -106,7 +106,7 @@ class Anggota extends CI_Controller
 
     public function hapus($id)
     {
-        $kredit = $this->db->get_where('kredit', ['id_anggota' => $id])->row_array();
+        $kredit = $this->db->get_where('kredit', ['id_anggota' => $id])->result_array();
 
         $this->db->where('id_anggota', $id);
         $this->db->delete('anggota');
@@ -116,6 +116,11 @@ class Anggota extends CI_Controller
 
         $this->db->where('id_anggota', $id);
         $this->db->delete('kredit');
+
+        foreach ($kredit as $k) {
+            $this->db->where('id_kredit', $k['id_kredit']);
+            $this->db->delete('angsuran');
+        }
 
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin/anggota');

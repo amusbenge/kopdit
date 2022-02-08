@@ -45,7 +45,7 @@ $('.hapus').on('click', function (e) {
 	const href = $(this).attr('href');
 	swal({
 			title: "Anda Yakin?",
-			text: "Data Akan Dihapus",
+			text: "Data Akan Dihapus Permanen",
 			icon: "warning",
 			buttons: true,
 			dangerMode: true,

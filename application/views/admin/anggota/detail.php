@@ -5,7 +5,7 @@
 		<div class="col-lg-6">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="<?= base_url('admin/anggota');?>">Anggota</a></li>
+					<li class="breadcrumb-item"><a href="<?= base_url('admin/anggota'); ?>">Anggota</a></li>
 					<li class="breadcrumb-item active" aria-current="page">Detail</li>
 				</ol>
 			</nav>
@@ -21,7 +21,7 @@
 					<span class="text">Edit</span>
 				</a>
 				<?php endif; ?> -->
-				<a href="<?= base_url('admin/anggota/cetak_anggota/').$anggota['id_anggota'];?>" target="_blank" class="btn btn-secondary btn-icon-split ml-2">
+				<a href="<?= base_url('admin/anggota/cetak_anggota/') . $anggota['id_anggota']; ?>" target="_blank" class="btn btn-secondary btn-icon-split ml-2">
 					<span class="icon text-white-50">
 						<i class="fas fa-fw fa-print"></i>
 					</span>

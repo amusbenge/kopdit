@@ -42,7 +42,7 @@ class Auth extends CI_Controller
                 if (password_verify($password, $anggota['password'])) {
                     $data['anggota'] = $anggota;
                     $this->session->set_userdata($data);
-                    redirect('beranda');
+                    redirect('anggota/beranda');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password yang ada masukan salah!</div>'); //tampilkan password salah pesan danger
                     redirect('auth');
