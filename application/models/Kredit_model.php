@@ -11,7 +11,7 @@ class Kredit_model extends CI_Model
 
     public function getKreditById($id_kredit)
     {
-        return $this->db->get_where('v_kredit_anggota', ['id_kredit' => $id_kredit ])->row_array();
+        return $this->db->get_where('v_kredit_anggota', ['id_kredit' => $id_kredit])->row_array();
     }
 
     public function cekKreditAnggota($id_anggota)
@@ -26,7 +26,7 @@ class Kredit_model extends CI_Model
 
         if (empty($cekStatus)) {
             return false;
-        }else {
+        } else {
             return true;
         }
     }
@@ -38,29 +38,29 @@ class Kredit_model extends CI_Model
 
     public function getBunga($id_bunga)
     {
-        return $this->db->get_where('bunga', ['id_bunga' => $id_bunga ])->row_array()['nilai'];
+        return $this->db->get_where('bunga', ['id_bunga' => $id_bunga])->row_array()['nilai'];
     }
 
     public function getBungaName($id_bunga)
     {
-        return $this->db->get_where('bunga', ['id_bunga' => $id_bunga ])->row_array()['jenis_bunga'];
+        return $this->db->get_where('bunga', ['id_bunga' => $id_bunga])->row_array()['jenis_bunga'];
     }
 
     public function getIDAnggotaByIDKredit($id_kredit)
     {
-        return $this->db->get_where('kredit', ['id_kredit' => $id_kredit ])->row_array()['id_anggota'];
+        return $this->db->get_where('kredit', ['id_kredit' => $id_kredit])->row_array()['id_anggota'];
     }
 
     public function getEmailByID($id_anggota)
     {
-        return $this->db->get_where('anggota', ['id_anggota' => $id_anggota ])->row_array()['email'];
+        return $this->db->get_where('anggota', ['id_anggota' => $id_anggota])->row_array()['email'];
     }
 
     public function getJWaktu($besar_pinjaman)
     {
         $this->db->from('jangka_waktu_angsuran');
-        $this->db->where('min <= ',$besar_pinjaman);
-        $this->db->where('max >= ',$besar_pinjaman);
+        $this->db->where('min <= ', $besar_pinjaman);
+        $this->db->where('max >= ', $besar_pinjaman);
         $query = $this->db->get()->row_array();
         return $query['jangka_waktu'];
     }
@@ -72,17 +72,17 @@ class Kredit_model extends CI_Model
 
     public function getKreditAnggotaByID($id_anggota)
     {
-        return $kredit = $this->db->get_where('v_kredit_anggota', ['id_anggota' => $id_anggota , 'status' => 'Diterima', 'aktif' => '1'])->row_array();
+        return $kredit = $this->db->get_where('v_kredit_anggota', ['id_anggota' => $id_anggota, 'status' => 'Diterima', 'aktif' => '1'])->row_array();
     }
 
     public function cekStatusPengajuan()
     {
         $query = $this->db->select("*")
-                ->from('v_kredit_anggota')
-                ->where('aktif', '0')
-                ->order_by('nilai_akhir', 'desc')
-                ->get()
-                ->result_array();
+            ->from('v_kredit_anggota')
+            ->where('aktif', '0')
+            ->order_by('nilai_akhir', 'desc')
+            ->get()
+            ->result_array();
         return $query;
     }
 
@@ -108,7 +108,7 @@ class Kredit_model extends CI_Model
 
     public function getAngsuranByIdKredit($id_kredit)
     {
-        return $this->db->get_where('angsuran', ['id_kredit' => $id_kredit ])->result_array();
+        return $this->db->get_where('angsuran', ['id_kredit' => $id_kredit])->result_array();
     }
 
     public function hitungAngsuran($id_kredit)
@@ -116,22 +116,22 @@ class Kredit_model extends CI_Model
         $kredit         = $this->Kredit_model->getKredit($id_kredit);
         $bunga          = $this->Kredit_model->getBunga($kredit['id_bunga']);
         $jangka_waktu   = $this->Kredit_model->getJWaktu($kredit['besar_pinjaman']);
-        $pokok          = $kredit['besar_pinjaman']/$jangka_waktu;
+        $pokok          = $kredit['besar_pinjaman'] / $jangka_waktu;
         $sisa_pinjaman  = $kredit['besar_pinjaman'];
         $besar_pinjaman  = $kredit['besar_pinjaman'];
         $total_angsur   = 0;
 
         $tanggal_diterima = date('Y-m-d');
         $tgl_jatuh_tempo = date('Y-m-d', strtotime('+30 days', strtotime($tanggal_diterima)));
-        for ($i=0; $i < $jangka_waktu; $i++) { 
-            if($kredit['id_bunga'] == 1 or $kredit['id_bunga'] == 3){
+        for ($i = 0; $i < $jangka_waktu; $i++) {
+            if ($kredit['id_bunga'] == 1 or $kredit['id_bunga'] == 3) {
                 $besar_bunga    = $sisa_pinjaman * $bunga;
             } else {
-                $besar_bunga = $besar_pinjaman*$bunga;
+                $besar_bunga = $besar_pinjaman * $bunga;
             }
             $angsuran       = $pokok + 50000 + $besar_bunga;
             $total_angsur   += $angsuran;
-            
+
             $data = [
                 'id_kredit' => $kredit['id_kredit'],
                 'pokok' => $pokok,
@@ -144,7 +144,7 @@ class Kredit_model extends CI_Model
                 'jatuh_tempo' => $tgl_jatuh_tempo,
                 'bukti' => ''
             ];
-            
+
             $sisa_pinjaman -= $angsuran;
             $this->db->insert('angsuran', $data);
             $tgl_jatuh_tempo = date('Y-m-d', strtotime('+30 days', strtotime($tgl_jatuh_tempo)));
@@ -179,6 +179,6 @@ class Kredit_model extends CI_Model
 
     public function cekSisaPinjamanAnggota($id_kredit)
     {
-        return $total = $this->db->get_where('kredit', ['id_kredit' => $id_kredit ])->row_array()['total_angsur'];
+        return $total = $this->db->get_where('kredit', ['id_kredit' => $id_kredit])->row_array()['total_angsur'];
     }
 }
