@@ -4,7 +4,7 @@
     		<div class="container">
     			<div class="row">
 
-    				<div class="col-lg-3 col-md-6 footer-info text-justify">
+    				<div class="col-lg-3 col-md-6 footer-info">
     					<h3>Info</h3>
     					<p>
     						Kopdit Swasti Sari telah menyediakan pelayanan keuangan kepada masyarakat hampir
@@ -17,11 +17,11 @@
     				<div class="col-lg-3 col-md-6 footer-links">
     					<h4>Pergi Ke</h4>
     					<ul>
-    						<li><a href="<?= base_url('beranda')?>">Beranda</a></li>
-    						<li><a href="<?= base_url('tentang')?>">Tentang Kami</a></li>
-    						<li><a href="<?= base_url('pelayanan')?>">Pelayanan</a></li>
-    						<li><a href="<?= base_url('artikel')?>">Berita</a></li>
-    						<li><a href="<?= base_url('kontak')?>">Kontak</a></li>
+    						<li><a href="<?= base_url('anggota/beranda') ?>">Beranda</a></li>
+    						<li><a href="<?= base_url('tentang') ?>">Tentang Kami</a></li>
+    						<li><a href="<?= base_url('anggota/pelayanan') ?>">Pelayanan</a></li>
+    						<li><a href="<?= base_url('anggota/artikel') ?>">Berita</a></li>
+    						<li><a href="<?= base_url('anggota/kontak') ?>">Kontak</a></li>
     					</ul>
     				</div>
 
@@ -37,12 +37,9 @@
     					</p>
 
     					<div class="social-links">
-    						<a href="https://twitter.com/kop_swastisari" class="twitter"><i
-    								class="icofont-twitter"></i></a>
-    						<a href="https://www.facebook.com/kopswastisari/" class="facebook"><i
-    								class="icofont-facebook"></i></a>
-    						<a href="https://www.instagram.com/kopdit_swastisarilka/" class="instagram"><i
-    								class="icofont-instagram"></i></a>
+    						<a href="https://twitter.com/kop_swastisari" class="twitter"><i class="icofont-twitter"></i></a>
+    						<a href="https://www.facebook.com/kopswastisari/" class="facebook"><i class="icofont-facebook"></i></a>
+    						<a href="https://www.instagram.com/kopdit_swastisarilka/" class="instagram"><i class="icofont-instagram"></i></a>
     					</div>
 
     				</div>
@@ -80,20 +77,20 @@
     <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="<?= base_url()?>assets/frontend/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="<?= base_url()?>assets/frontend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= base_url()?>assets/frontend/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-    <script src="<?= base_url()?>assets/frontend/assets/vendor/php-email-form/validate.js"></script>
-    <script src="<?= base_url()?>assets/frontend/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-    <script src="<?= base_url()?>assets/frontend/assets/vendor/counterup/counterup.min.js"></script>
-    <script src="<?= base_url()?>assets/frontend/assets/vendor/venobox/venobox.min.js"></script>
-    <script src="<?= base_url()?>assets/frontend/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-    <script src="<?= base_url()?>assets/frontend/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="<?= base_url()?>assets/frontend/assets/vendor/aos/aos.js"></script>
-    <!-- <script src="<?= base_url()?>assets/js/ckeditor/ckeditor.js"></script> -->
+    <script src="<?= base_url() ?>assets/frontend/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="<?= base_url() ?>assets/frontend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url() ?>assets/frontend/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="<?= base_url() ?>assets/frontend/assets/vendor/php-email-form/validate.js"></script>
+    <script src="<?= base_url() ?>assets/frontend/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="<?= base_url() ?>assets/frontend/assets/vendor/counterup/counterup.min.js"></script>
+    <script src="<?= base_url() ?>assets/frontend/assets/vendor/venobox/venobox.min.js"></script>
+    <script src="<?= base_url() ?>assets/frontend/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="<?= base_url() ?>assets/frontend/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="<?= base_url() ?>assets/frontend/assets/vendor/aos/aos.js"></script>
+    <!-- <script src="<?= base_url() ?>assets/js/ckeditor/ckeditor.js"></script> -->
 
     <!-- Template Main JS File -->
-    <script src="<?= base_url()?>assets/frontend/assets/js/main.js"></script>
+    <script src="<?= base_url() ?>assets/frontend/assets/js/main.js"></script>
 
     <script src="<?= base_url('assets/frontend/assets/'); ?>js/front-ex.js"></script>
 
@@ -107,7 +104,7 @@
     <!-- sweat alert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    
+
 
     </body>
 
