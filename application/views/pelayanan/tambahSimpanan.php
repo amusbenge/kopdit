@@ -14,8 +14,7 @@
 	<div class="container mt-2 mb-2">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a
-						href="<?= base_url('pelayanan/simpanan/').$anggota['anggota']['id_anggota'];?>">Simpanan</a>
+				<li class="breadcrumb-item"><a href="<?= base_url('pelayanan/simpanan/') . $anggota['anggota']['id_anggota']; ?>">Simpanan</a>
 				</li>
 				<li class="breadcrumb-item active" aria-current="page">Tambah Simpanan</li>
 			</ol>
@@ -23,15 +22,13 @@
 		<div class="card shadow col-lg-12">
 			<div class="card-body row">
 				<div class="col-md-6">
-					<form action="<?= base_url('pelayanan/tambahSimpanan/') . $anggota['anggota']['id_anggota']; ?>"
-						method="POST" enctype="multipart/form-data">
+					<form action="<?= base_url('pelayanan/tambahSimpanan/') . $anggota['anggota']['id_anggota']; ?>" method="POST" enctype="multipart/form-data">
 						<div class="form-group row mt-3">
 							<label for="no_agt" class="col-sm-4 col-form-label">
 								No Buku :
 							</label>
 							<div class="col-sm-8">
-								<input type="text" name="no_agt" id="no_agt" class="form-control"
-									value="<?= $anggota['anggota']['no_buku'] ?>" readonly>
+								<input type="text" name="no_agt" id="no_agt" class="form-control" value="<?= $anggota['anggota']['no_buku'] ?>" readonly>
 							</div>
 						</div>
 
@@ -40,8 +37,7 @@
 								Nama Lengkap :
 							</label>
 							<div class="col-sm-8">
-								<input type="text" name="nm_anggota" id="nm_anggota" class="form-control"
-									value="<?= $anggota['anggota']['nm_anggota'] ?>" readonly>
+								<input type="text" name="nm_anggota" id="nm_anggota" class="form-control" value="<?= $anggota['anggota']['nm_anggota'] ?>" readonly>
 							</div>
 						</div>
 
@@ -50,8 +46,7 @@
 								Tambah Deposit :
 							</label>
 							<div class="col-sm-8">
-								<input type="text" name="deposit" id="deposit" class="form-control"
-									placeholder="Masukan Jumlah Uang">
+								<input type="text" name="deposit" id="deposit" class="form-control" placeholder="Masukan Jumlah Uang">
 								<?= form_error('deposit', '<small class="text-danger">', '</small>'); ?>
 							</div>
 						</div>
@@ -62,7 +57,7 @@
 							</label>
 							<div class="col-sm-8">
 								<input type="file" class="form-control-file" name="bukti" id="bukti">
-								<?= form_error('bukti', '<small class="text-danger">', '</small>');?><br>
+								<?= form_error('bukti', '<small class="text-danger">', '</small>'); ?><br>
 								<button type="submit" class="btn btn-primary btn-md mt-2 tambahDeposit">Bayar</button>
 							</div>
 						</div>
@@ -71,7 +66,7 @@
 				<div class="col-md-6 mt-2">
 					<label for="">
 						Harap Dibaca! <br>
-						Silahkan transferkan uang anda pada <a href="<?= base_url('kontak/#rek');?>" target="_blank">Rekening</a> kopdit
+						Silahkan transferkan uang anda pada <a href="<?= base_url('kontak/#rek'); ?>" target="_blank">Rekening</a> kopdit
 						swasti sari<br>
 						Dengan Rincian Sebagai Berikut : <br>
 						<ol>

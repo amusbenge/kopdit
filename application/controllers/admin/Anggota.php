@@ -21,27 +21,12 @@ class Anggota extends CI_Controller
         // $this->form_validation->set_rules('no_buku', 'No Buku', 'required|trim', [
         //     'required' => 'Harus Diisi'
         // ]);
-        $this->form_validation->set_rules('nm_anggota', 'Nama Anggota', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('no_hp', 'No Hp', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[anggota.email]|valid_email', [
-            'is_unique' => 'Email Sudah Terdaftar!',
-            'required' => 'Harus diisi',
-            'valid_email' => 'Email tidak valid'
-        ]);
-        $this->form_validation->set_rules('jns_kelamin', 'Jenis Kelamin', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]', [
-            'min_length' => 'Password Terlalu Pendek',
-            'required' => 'Harus Diisi'
-        ]);
+        $this->form_validation->set_rules('nm_anggota', 'Nama Anggota', 'required|trim');
+        $this->form_validation->set_rules('no_hp', 'No Hp', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[anggota.email]|valid_email');
+        $this->form_validation->set_rules('jns_kelamin', 'Jenis Kelamin', 'required|trim');
+        $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'required|trim');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data); //$data mengirimkan data user yang masuk
@@ -56,28 +41,28 @@ class Anggota extends CI_Controller
             $data = [
                 // 'no_buku'       => htmlspecialchars($this->input->post('no_buku', true)),
                 'no_buku'       => "",
-                'nm_anggota' 	=> htmlspecialchars($this->input->post('nm_anggota', true)),
-                'nik' 		    => "",
-                'tmpt_lahir' 	=> "",
-                'tgl_lhr' 		=> htmlspecialchars($this->input->post('tgl_lhr', true)),
-                'agama' 		=> "",
-                'no_hp' 		=> htmlspecialchars($this->input->post('no_hp', true)),
-				'email' 		=> htmlspecialchars($email),
-                'foto' 		    => 'default.jpg',
-                'jns_kelamin' 	=> htmlspecialchars($this->input->post('jns_kelamin', true)),
-                'alamat' 	    => "",
-                'rt' 	        => "",
-                'rw' 	        => "",
-                'kel_des' 	    => "",
-                'kec' 	        => "",
-                'kota_kab' 	    => "",
-                'prov' 	        => "",
-                'kode_pos' 	    => "",
-                'pendidikan_terakhir' 	=> "",
-                'pekerjaan' 	=> $this->input->post('pekerjaan'),
-                'tgl_masuk' 	=> date('Y-m-d'),
-				'password' 		=> password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-				'aktif'		    => 1,
+                'nm_anggota'     => htmlspecialchars($this->input->post('nm_anggota', true)),
+                'nik'             => "",
+                'tmpt_lahir'     => "",
+                'tgl_lhr'         => htmlspecialchars($this->input->post('tgl_lhr', true)),
+                'agama'         => "",
+                'no_hp'         => htmlspecialchars($this->input->post('no_hp', true)),
+                'email'         => htmlspecialchars($email),
+                'foto'             => 'default.jpg',
+                'jns_kelamin'     => htmlspecialchars($this->input->post('jns_kelamin', true)),
+                'alamat'         => "",
+                'rt'             => "",
+                'rw'             => "",
+                'kel_des'         => "",
+                'kec'             => "",
+                'kota_kab'         => "",
+                'prov'             => "",
+                'kode_pos'         => "",
+                'pendidikan_terakhir'     => "",
+                'pekerjaan'     => $this->input->post('pekerjaan'),
+                'tgl_masuk'     => date('Y-m-d'),
+                'password'         => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'aktif'            => 1,
             ];
 
             $this->db->insert('anggota', $data);
@@ -126,17 +111,17 @@ class Anggota extends CI_Controller
 
         $this->db->where('id_anggota', $id);
         $this->db->delete('simpanan');
-        
+
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin/anggota');
     }
 
     public function konfirmasiAnggota($id_anggota)
     {
-        $anggota = $this->db->get_where('anggota', ['id_anggota' => $id_anggota ])->row_array();
+        $anggota = $this->db->get_where('anggota', ['id_anggota' => $id_anggota])->row_array();
         $email = $anggota['email'];
 
-        $data=[
+        $data = [
             'aktif' => 1
         ];
 
@@ -148,7 +133,6 @@ class Anggota extends CI_Controller
 
         $this->session->set_flashdata('flash', 'Dikonfirmasi');
         redirect('admin/anggota');
-        
     }
 
     private function _sendEmail($email)
@@ -173,75 +157,40 @@ class Anggota extends CI_Controller
         $this->email->subject('Verifikasi akun');
         $this->email->message($message);
 
-        if ($this->email->send()) { 
-			return true;
-		} else {
-			echo $this->email->print_debugger();
-			die;
-		}
-
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
     }
 
-    
+
 
     public function ubah($id_anggota)
     {
         $data['title'] = 'Ubah Data';
         $data['user'] = $this->db->get_where('admin', ['email' => $this->session->userdata('email')])->row_array();
         $data['pekerjaan'] = $this->db->get('sub_krit_pekerjaan')->result_array();
-        $data['anggota'] = $this->db->get_where('anggota', ['id_anggota' => $id_anggota ])->row_array();
+        $data['anggota'] = $this->db->get_where('anggota', ['id_anggota' => $id_anggota])->row_array();
 
         // Set rules
-        $this->form_validation->set_rules('nm_anggota', 'Nama Anggota', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('tmpt_lahir', 'Tempat Lahir', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('agama', 'Agama', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('no_hp', 'No HP', 'required|trim|max_length[12]', [
-            'required' => 'Harus Diisi',
-            'max_length' => 'Maksimal No Hp adalah 12 Digit'
-        ]);
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('rt', 'Rt', 'required|trim|max_length[3]', [
-            'required' => 'Harus Diisi',
-            'max_length' => 'Maksimal 3 Digit'
-        ]);
-        $this->form_validation->set_rules('rw', 'Rw', 'required|trim|max_length[3]', [
-            'required' => 'Harus Diisi',
-            'max_length' => 'Maksimal 3 Digit'
-        ]);
-        $this->form_validation->set_rules('kel_des', 'Kelurahan/Desa', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('kec', 'Kecamatan', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('kota_kab', 'Kota/Kabupaten', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('prov', 'Provinsi', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('kode_pos', 'Kode Pos', 'required|trim|max_length[5]', [
-            'required' => 'Harus Diisi',
-            'max_length' => 'Maksimal 5 Digit'
-        ]);
-        $this->form_validation->set_rules('pendidikan_terakhir', 'Pendidikan Terakhir', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'required|trim', [
-            'required' => 'Harus Diisi'
-        ]);
-        $this->form_validation->set_rules('aktif', 'Aktif', 'required|trim|max_length[1]', [
-            'required' => 'Harus Diisi',
-            'max_length' => 'Maksimal 1 Digit'
-        ]);
+        $this->form_validation->set_rules('nm_anggota', 'Nama Anggota', 'required|trim');
+        $this->form_validation->set_rules('nik', 'NIK', 'required|max_length[16]|numeric|trim');
+        $this->form_validation->set_rules('tmpt_lahir', 'Tempat Lahir', 'required|trim');
+        $this->form_validation->set_rules('agama', 'Agama', 'required|trim');
+        $this->form_validation->set_rules('no_hp', 'No HP', 'required|max_length[12]|numeric|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+        $this->form_validation->set_rules('rt', 'Rt', 'required|max_length[3]|numeric|trim');
+        $this->form_validation->set_rules('rw', 'Rw', 'required|max_length[3]|numeric|trim');
+        $this->form_validation->set_rules('kel_des', 'Kelurahan/Desa', 'required|trim');
+        $this->form_validation->set_rules('kec', 'Kecamatan', 'required|trim');
+        $this->form_validation->set_rules('kota_kab', 'Kota/Kabupaten', 'required|trim');
+        $this->form_validation->set_rules('prov', 'Provinsi', 'required|trim');
+        $this->form_validation->set_rules('kode_pos', 'Kode Pos', 'required|max_length[5]|numeric|trim');
+        $this->form_validation->set_rules('pendidikan_terakhir', 'Pendidikan Terakhir', 'required|trim');
+        $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'required|trim');
+        $this->form_validation->set_rules('aktif', 'Aktif', 'required|trim|max_length[1]');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -250,7 +199,7 @@ class Anggota extends CI_Controller
             $this->load->view('admin/anggota/ubah', $data);
             $this->load->view('templates/footer');
         } else {
-            
+
             $this->db->where('id_anggota', $id_anggota);
             $this->db->update('anggota', $this->input->post());
             $this->session->set_flashdata('flash', 'Diubah');
@@ -262,7 +211,7 @@ class Anggota extends CI_Controller
     {
         $data['title'] = 'Detail Anggota';
         $data['user'] = $this->db->get_where('admin', ['email' => $this->session->userdata('email')])->row_array();
-        $data['anggota'] = $this->db->get_where('anggota', ['id_anggota' => $id_anggota ])->row_array();
+        $data['anggota'] = $this->db->get_where('anggota', ['id_anggota' => $id_anggota])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -278,7 +227,7 @@ class Anggota extends CI_Controller
         $nama = $data['nm_anggota'];
         $html = $this->load->view('laporan/cetak_anggota', ['anggota' => $data], TRUE);
         $mpdf->WriteHTML($html);
-        $mpdf->Output($nama.'.pdf', 'I');
+        $mpdf->Output($nama . '.pdf', 'I');
     }
 
     public function laporan_Anggota()

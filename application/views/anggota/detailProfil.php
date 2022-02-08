@@ -14,7 +14,7 @@
     	<div class="container mt-2">
     		<nav aria-label="breadcrumb">
     			<ol class="breadcrumb">
-    				<li class="breadcrumb-item"><a href="<?= base_url('beranda');?>"><i class="fas fa-fw fa-home"></i>
+    				<li class="breadcrumb-item"><a href="<?= base_url('anggota/beranda'); ?>"><i class="fas fa-fw fa-home"></i>
     						Beranda</a></li>
     				<li class="breadcrumb-item active" aria-current="page">Sejarah</li>
     			</ol>

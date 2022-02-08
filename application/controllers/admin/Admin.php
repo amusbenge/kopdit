@@ -27,9 +27,7 @@ class Admin extends CI_Controller
         $data['title'] = 'Ubah Profil';
         $data['user'] = $this->db->get_where('admin', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->form_validation->set_rules('name', 'Nama', 'required|trim', [
-            'required' => 'Harus Diisi!'
-        ]);
+        $this->form_validation->set_rules('name', 'Nama', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -39,8 +37,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $name = $this->input->post('name');
-            $email = $this->input->post('email');
-
+            $id = $this->input->post('id_admin');
             $upload_image = $_FILES['image']['name'];
 
             if ($upload_image) {
@@ -57,17 +54,24 @@ class Admin extends CI_Controller
                     }
 
                     $new_image = $this->upload->data('file_name');
-                    $this->db->set('image', $new_image);
+                    $data_updt = [
+                        'nm_admin' => $name,
+                        'image' => $new_image
+                    ];
                 } else {
                     echo $this->upload->display_errors();
                 }
+            } else {
+                $new_image = $data['user']['image'];
+                $data_updt = [
+                    'nm_admin' => $name,
+                    'image' => $new_image
+                ];
             }
 
-            $this->db->set('nm_admin', $name);
-            $this->db->where('email', $email);
-            $this->db->update('admin');
+            $this->SuperModel->updateWhere($data_updt, $id, 'admin');
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Profil anda berhasil diperbaruhi</div>'); //tampilkan password salah pesan danger
+            $this->session->set_flashdata('pesan', 'diupdate'); //tampilkan password salah pesan danger
             redirect('admin/admin');
         }
     }
@@ -77,19 +81,9 @@ class Admin extends CI_Controller
         $data['title'] = 'Ubah Password';
         $data['user'] = $this->db->get_where('admin', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim', [
-            'required' => 'Harus Diisi!'
-        ]);
-        $this->form_validation->set_rules('new_password1', 'Password Baru', 'required|trim|min_length[3]|matches[new_password2]', [
-            'required' => 'Harus Diisi!',
-            'min_length' => 'Minimal 3 Karakter',
-            'matches' => 'Password Baru tidak sama dengan Konfirmasi Password'
-        ]);
-        $this->form_validation->set_rules('new_password2', 'Konfirmasi Password', 'required|trim|min_length[3]|matches[new_password1]', [
-            'required' => 'Harus Diisi!',
-            'min_length' => 'Minimal 3 Karakter',
-            'matches' => 'Konfirmasi Password tidak sama dengan Password Baru'
-        ]);
+        $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
+        $this->form_validation->set_rules('new_password1', 'Password Baru', 'required|min_length[3]|matches[new_password2]|trim');
+        $this->form_validation->set_rules('new_password2', 'Konfirmasi Password', 'required|min_length[3]|matches[new_password1]|trim');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -98,23 +92,28 @@ class Admin extends CI_Controller
             $this->load->view('admin/admin/changepassword', $data);
             $this->load->view('templates/footer');
         } else { //jika benar
+            $id_admin = $this->input->post('id_admin');
             $current_password = $this->input->post('current_password');
             $new_password = $this->input->post('new_password1');
+
             if (!password_verify($current_password, $data['user']['password'])) {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password Anda Salah!!</div>');
+                $this->session->set_flashdata('pesan', 'Password anda salah');
                 redirect('admin/admin/changepassword');
             } else {
                 if ($current_password == $new_password) {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password baru tidak boleh sama dengan password lama!</div>');
+                    $this->session->set_flashdata('pesan', 'Password baru sama dengan Password lama');
                     redirect('admin/admin/changepassword');
                 } else {
                     //password ok
                     $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
 
-                    $this->db->set('password', $password_hash);
-                    $this->db->where('email', $this->session->userdata('email'));
-                    $this->db->update('admin');
-                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password Anda Berhasil diubah</div>');
+                    $data_updt = [
+                        'password' => $password_hash
+                    ];
+
+                    $this->SuperModel->updateWhere($data_updt, $id_admin, 'admin');
+
+                    $this->session->set_flashdata('pesan', 'diupdate');
                     redirect('admin/admin');
                 }
             }

@@ -15,7 +15,7 @@
     	<div class="container mt-2">
     		<nav aria-label="breadcrumb">
     			<ol class="breadcrumb">
-    				<li class="breadcrumb-item"><a href="<?= base_url('beranda');?>"><i class="fas fa-fw fa-home"></i>
+    				<li class="breadcrumb-item"><a href="<?= base_url('anggota/beranda'); ?>"><i class="fas fa-fw fa-home"></i>
     						Beranda</a></li>
     				<li class="breadcrumb-item active" aria-current="page">Info Kredit</li>
     			</ol>
@@ -60,10 +60,9 @@
     						<li>Foto copy KTP Penjamin sesama anggota Kopdit Swasti Sari Kupang</li>
     						<li>Surat Pernyataan barang anggunan atau jaminan yang di tanda tangani oleh suami, istri
     							anak-anak baik milik sendiri maupun milik orang lain diatas kertas bermaterai Rp. 6000
-    							(bila dibutuhkan)<a href="<?= base_url('pelayanan/lakukan_download/2');?>"> Download</a>
+    							(bila dibutuhkan)<a href="<?= base_url('pelayanan/lakukan_download/2'); ?>"> Download</a>
     						</li>
-    						<li>Surat kuasa pemotongan gaji bagi pegawai Negeri maupun Karyawan Swasta <a
-    								href="<?= base_url('pelayanan/lakukan_download/3');?>">Download</a></li>
+    						<li>Surat kuasa pemotongan gaji bagi pegawai Negeri maupun Karyawan Swasta <a href="<?= base_url('pelayanan/lakukan_download/3'); ?>">Download</a></li>
     						<li>Foto Copy Akta Pernikahan bagi yang sudah menikah. Yang belum menikah wajib ada surat
     							keterangan dari lurah setempat</li>
     					</ol>

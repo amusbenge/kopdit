@@ -2,7 +2,7 @@
 <div class="container-fluid">
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="<?= base_url('admin/admin')?>">Profil</a></li>
+			<li class="breadcrumb-item"><a href="<?= base_url('admin/admin') ?>">Profil</a></li>
 			<li class="breadcrumb-item active" aria-current="page">Ubah Profil</li>
 		</ol>
 	</nav>
@@ -16,13 +16,13 @@
 		<div class="col-lg-10 mt-2">
 			<?= form_open_multipart('admin/admin/edit'); ?>
 			<!-- field untuk email -->
+			<input type="hidden" name="id_admin" value="<?= $user['id_admin']; ?>">
 			<div class="form-group row mt-2">
 				<label for="email" class="col-sm-2 col-form-label">
 					Email
 				</label>
 				<div class="col-sm-10">
-					<input type="text" name="email" id="email" class="form-control" value="<?= $user['email']; ?>"
-						readonly>
+					<input type="text" name="email" id="email" class="form-control" value="<?= $user['email']; ?>" readonly>
 				</div>
 			</div>
 			<!-- field untuk full name -->

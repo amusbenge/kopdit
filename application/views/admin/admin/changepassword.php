@@ -3,7 +3,7 @@
 
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="<?= base_url('admin/admin')?>">Profil</a></li>
+			<li class="breadcrumb-item"><a href="<?= base_url('admin/admin') ?>">Profil</a></li>
 			<li class="breadcrumb-item active" aria-current="page">Ubah Password</li>
 		</ol>
 	</nav>
@@ -12,9 +12,17 @@
 		<div class="row justify-content-md-center">
 			<div class="col-md-5 mt-3">
 				<!-- tampilkan pesan -->
-				<?= $this->session->flashdata('message'); ?>
+				<?php if ($this->session->flashdata('pesan')) : ?>
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						<strong>Gagal!</strong> <?= $this->session->flashdata('pesan'); ?>.
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				<?php endif; ?>
 
 				<form action="<?= base_url('admin/admin/changepassword') ?>" method="POST">
+					<input type="hidden" name="id_admin" value="<?= $user['id_admin']; ?>">
 					<div class="form-group">
 						<label for="current_password">Password Sekarang</label>
 						<input type="password" class="form-control" id="current_password" name="current_password">

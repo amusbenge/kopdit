@@ -14,23 +14,13 @@
 					date_default_timezone_set('Asia/Jakarta');
 					$jam = date("H:i:s");
 					echo "| Jam : <b>" . $jam . " " . "</b>";
-					// $a = date("H");
-					// if (($a >= 6) && ($a <= 11)) {
-					// 	echo "<b>, Selamat Pagi !!</b>";
-					// } else if (($a > 11) && ($a <= 15)) {
-					// 	echo ", Selamat Pagi !!";
-					// } else if (($a > 15) && ($a <= 18)) {
-					// 	echo ", Selamat Siang !!";
-					// } else {
-					// 	echo ", <b> Selamat Malam </b>";
-					// }
 					?>
     			</p>
     		</div>
 
     		<nav class="nav-menu d-none d-lg-block">
     			<ul>
-    				<li class="active"><a href="<?= base_url('beranda') ?>">Beranda</a></li>
+    				<li class="active"><a href="<?= base_url('anggota/beranda') ?>">Beranda</a></li>
     				<li class="drop-down"><a href="<?= base_url('tentang') ?>">Tentang</a>
     					<ul>
     						<li><a href="<?= base_url('tentang/') ?>#sejarah">Sejarah</a></li>
@@ -44,8 +34,8 @@
     				<?php if (isset($anggota['anggota'])) : ?>
     					<li><a href="<?= base_url('pelayanan/') ?>">Pelayanan</a></li>
     				<?php endif; ?>
-    				<li><a href="<?= base_url('artikel/') ?>">Berita</a></li>
-    				<li><a href="<?= base_url('kontak') ?>">Kontak</a></li>
+    				<li><a href="<?= base_url('anggota/artikel') ?>">Berita</a></li>
+    				<li><a href="<?= base_url('anggota/kontak') ?>">Kontak</a></li>
     				<?php if (empty($anggota['anggota'])) : ?>
     					<li class="get-started"><a href="<?= base_url('auth') ?>">Login</a></li>
     					<li class="get-started-outline"><a href="<?= base_url('auth/register') ?>">Daftar</a></li>

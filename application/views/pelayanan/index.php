@@ -11,7 +11,7 @@
 		</div>
 		<div class="container">
 			<ol>
-				<li><a href="<?= base_url('beranda') ?>"><i class="fas fa-fw fa-home"></i> Beranda</a></li>
+				<li><a href="<?= base_url('anggota/beranda') ?>"><i class="fas fa-fw fa-home"></i> Beranda</a></li>
 				<li>Pelayanan</li>
 			</ol>
 		</div>

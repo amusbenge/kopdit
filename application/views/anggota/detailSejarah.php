@@ -14,7 +14,7 @@
 	<div class="container mt-2">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="<?= base_url('beranda');?>"><i class="fas fa-fw fa-home"></i>
+				<li class="breadcrumb-item"><a href="<?= base_url('anggota/beranda'); ?>"><i class="fas fa-fw fa-home"></i>
 						Beranda</a></li>
 				<li class="breadcrumb-item active" aria-current="page">Sejarah</li>
 			</ol>
@@ -96,18 +96,23 @@
 						</li>
 					</ol>
 					<ol>
-						<li><p class="text-justify">Para guru dan pegawai yayasan sepakat untuk membuka Koperasi, dengan
-							nama
-							“Koperasi Kredit Swasti Sari Kupang”. Berdasarkan namanya maka Swasti : Pendidikan, Sari
-							:
-							Utama, maka Swasti Sari memiliki arti mengutamakan Pendidikan, baik pendidikan anggota,
-							pengurus, pengawas maupun karyawan. </p></li>
-						<li><p class="text-justify">Tanggal 1 Februari 1988 ditetapkan sebagai hari berdirinya Koperasi
-							Kredit
-							Swasti Sari </p></li>
-						<li><p class="text-justify">Menetapkan secara Aklamasi Kepengurusan 1988/1990 adalah :
-							Penasihat: Uskup Kupang (Mgr. Gregorius Mantairo, SVD)(Alm)
-							Susunan Pengurus : </p>
+						<li>
+							<p class="text-justify">Para guru dan pegawai yayasan sepakat untuk membuka Koperasi, dengan
+								nama
+								“Koperasi Kredit Swasti Sari Kupang”. Berdasarkan namanya maka Swasti : Pendidikan, Sari
+								:
+								Utama, maka Swasti Sari memiliki arti mengutamakan Pendidikan, baik pendidikan anggota,
+								pengurus, pengawas maupun karyawan. </p>
+						</li>
+						<li>
+							<p class="text-justify">Tanggal 1 Februari 1988 ditetapkan sebagai hari berdirinya Koperasi
+								Kredit
+								Swasti Sari </p>
+						</li>
+						<li>
+							<p class="text-justify">Menetapkan secara Aklamasi Kepengurusan 1988/1990 adalah :
+								Penasihat: Uskup Kupang (Mgr. Gregorius Mantairo, SVD)(Alm)
+								Susunan Pengurus : </p>
 						</li>
 					</ol>
 					<table class="table">
