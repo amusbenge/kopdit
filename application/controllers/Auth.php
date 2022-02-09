@@ -196,14 +196,18 @@ class Auth extends CI_Controller
         } else {
             $token = base64_encode(random_bytes(32));
             $email = $this->input->post('email', true);
-            // $user_token = [
-            //     'email' => $email,
-            //     'token' => $token,
-            //     'date_created' => time()
-            // ];
-            // $this->_sendEmail($token, $email);
 
-            $this->_sendEmail($email);
+            $emailAnggota = $this->db->get_where('anggota', ['email' => $email])->row_array();
+
+            //cek Email Anggota
+            if ($emailAnggota) {
+                $this->_sendEmail($email);
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">
+			<b>Gagal!</b><br> Anda Belum Mendaftar Sebagai Anggota
+			</div>');
+                redirect('auth');
+            }
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
 			<b>Link Reset telah dikirim</b><br> Silahkan Cek Email untuk Reset Password Anda

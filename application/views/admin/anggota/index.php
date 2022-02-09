@@ -79,10 +79,11 @@
 											<a href="<?= base_url('admin/anggota/konfirmasiAnggota/') . $agt['id_anggota'] ?>" class="btn btn-success btn-circle mr-2" data-toggle="tooltip" data-placement="top" title="Verifikasi">
 												<i class="fas fa-fw fa-check-circle"></i>
 											</a>
+										<?php else : ?>
+											<a href="<?= base_url('admin/anggota/ubah/') . $agt['id_anggota'] ?>" class="btn btn-success btn-circle mr-2" data-toggle="tooltip" data-placement="top" title="Ubah Anggota">
+												<i class="fas fa-fw fa-pencil-alt"></i>
+											</a>
 										<?php endif; ?>
-										<a href="<?= base_url('admin/anggota/ubah/') . $agt['id_anggota'] ?>" class="btn btn-success btn-circle mr-2" data-toggle="tooltip" data-placement="top" title="Ubah Anggota">
-											<i class="fas fa-fw fa-pencil-alt"></i>
-										</a>
 									<?php endif; ?>
 									<a href="<?= base_url('admin/anggota/detail/') . $agt['id_anggota'] ?>" class="btn btn-warning btn-circle mr-2" data-toggle="tooltip" data-placement="top" title="Detail Anggota">
 										<i class="fas fa-fw fa-eye"></i>
