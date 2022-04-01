@@ -20,8 +20,7 @@
 </a>
 
 <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-	aria-hidden="true">
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -39,8 +38,7 @@
 </div>
 
 <!-- about modal -->
-<div class="modal fade" id="aboutModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
-	aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="aboutModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-scrollable">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -110,20 +108,37 @@
 
 <script src="<?= base_url('assets/'); ?>js/backend-ex.js"></script>
 
+
 <!-- sweat alert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 	CKEDITOR.replace('isi');
-
 </script>
 
 <script>
 	$('.costum-file-input').on('change',
-		function () { //artinya cari class costum-file-input ketika di ubah jalankan fungsi
+		function() { //artinya cari class costum-file-input ketika di ubah jalankan fungsi
 			let fileName = $(this).val().split('\\').pop(); //ambil fileName simpan ke dalam isinya
 			$(this).next('.costum-file-label').addClass("selected").html(fileName); //isi kesini file yang diinput
 		});
+</script>
 
+<script>
+	$(document).ready(function() { // Ketika halaman sudah siap (sudah selesai di load)
+		$("#check-all").click(function() { // Ketika user men-cek checkbox all
+			if ($(this).is(":checked")) // Jika checkbox all diceklis
+				$(".check-item").prop("checked", true); // ceklis semua checkbox siswa dengan class "check-item"
+			else // Jika checkbox all tidak diceklis
+				$(".check-item").prop("checked", false); // un-ceklis semua checkbox siswa dengan class "check-item"
+		});
+
+		$("#btn-delete").click(function() { // Ketika user mengklik tombol delete
+			var confirm = window.confirm("Apakah Anda yakin ingin menghapus data-data ini?"); // Buat sebuah alert konfirmasi
+
+			if (confirm) // Jika user mengklik tombol "Ok"
+				$("#form-delete").submit(); // Submit form
+		});
+	});
 </script>
 
 </body>

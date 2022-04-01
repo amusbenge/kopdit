@@ -55,7 +55,7 @@
                                 Pegawai Negeri)
                                 dilingkup Dinas Pendidikan dan Kebudayaan Kabupaten Kupang. Surat edaran ini tidak
                                 direspon
-                                malah sebaliknya memperkuat keyakinan dan semangat para Guru <br> <a href="<?= base_url('tentang/detailSejarah') ?>"><i class="icofont-arrow-right"></i>
+                                malah sebaliknya memperkuat keyakinan dan semangat para Guru <br> <a href="<?= base_url('anggota/detailSejarah') ?>"><i class="icofont-arrow-right"></i>
                                     Selengkapnya</a> </p>
                         </li>
                     </ol>

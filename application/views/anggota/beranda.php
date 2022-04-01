@@ -3,7 +3,7 @@
     <div class="hero-container" data-aos="fade-up">
         <h1>Kopdit Swastisari</h1>
         <h2><i>"Terdepan dan Terpercaya"</i></h2>
-        <a href="#about" class="btn-get-started scrollto"><i class="las la-angle-double-down"></i></a>
+        <!-- <a href="#about" class="btn-get-started scrollto"><i class="las la-angle-double-down"></i></a> -->
     </div>
 </section><!-- End Hero -->
 
@@ -69,7 +69,7 @@
                         dilakukan secara rutin baik itu perminggu, per tri wulan dan setahun sakali. Selain pendidikan,
                         anggota juga didampingi dalam mengelolah keuangannya agar terarah dan tepat sasaran.
                     </p>
-                    <a href="<?= base_url('tentang/detailProfil') ?>"><i class="icofont-arrow-right"></i>
+                    <a href="<?= base_url('anggota/detailProfil') ?>"><i class="icofont-arrow-right"></i>
                         Selengkapnya</a>
                     </p>
                 </div>

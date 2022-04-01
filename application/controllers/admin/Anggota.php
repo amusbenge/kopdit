@@ -104,26 +104,52 @@ class Anggota extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function hapus($id)
+    // public function hapus($id)
+    // {
+    //     $kredit = $this->db->get_where('kredit', ['id_anggota' => $id])->result_array();
+
+    //     $this->db->where('id_anggota', $id);
+    //     $this->db->delete('anggota');
+
+    //     $this->db->where('id_anggota', $id);
+    //     $this->db->delete('simpanan');
+
+    //     $this->db->where('id_anggota', $id);
+    //     $this->db->delete('kredit');
+
+    //     foreach ($kredit as $k) {
+    //         $this->db->where('id_kredit', $k['id_kredit']);
+    //         $this->db->delete('angsuran');
+    //     }
+
+    //     $this->session->set_flashdata('flash', 'Dihapus');
+    //     redirect('admin/anggota');
+    // }
+
+    public function hapus()
     {
-        $kredit = $this->db->get_where('kredit', ['id_anggota' => $id])->result_array();
+        $anggota = $this->input->post('id_anggota');
 
-        $this->db->where('id_anggota', $id);
-        $this->db->delete('anggota');
+        foreach ($anggota as $a) {
+            $kredit = $this->db->get_where('kredit', ['id_anggota' => $a])->result_array();
 
-        $this->db->where('id_anggota', $id);
-        $this->db->delete('simpanan');
+            $this->db->where('id_anggota', $a);
+            $this->db->delete('anggota');
 
-        $this->db->where('id_anggota', $id);
-        $this->db->delete('kredit');
+            $this->db->where('id_anggota', $a);
+            $this->db->delete('simpanan');
 
-        foreach ($kredit as $k) {
-            $this->db->where('id_kredit', $k['id_kredit']);
-            $this->db->delete('angsuran');
+            $this->db->where('id_anggota', $a);
+            $this->db->delete('kredit');
+
+            foreach ($kredit as $k) {
+                $this->db->where('id_kredit', $k['id_kredit']);
+                $this->db->delete('angsuran');
+            }
+
+            $this->session->set_flashdata('flash', 'Dihapus');
+            redirect('admin/anggota');
         }
-
-        $this->session->set_flashdata('flash', 'Dihapus');
-        redirect('admin/anggota');
     }
 
     public function konfirmasiAnggota($id_anggota)
